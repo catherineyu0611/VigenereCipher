@@ -23,11 +23,13 @@ If the recipient of the message knows the key, they can recover the plaintext by
 alphabet = {"a":0,"b":1,"c":2,"d":3,"e":4,"f":5,"g":6,"h":7,"i":8,"j":9,"k":10,"l":11,"m":12,"n":13,"o":14,
             "p":15,"q":16,"r":17,"s":18,"t":19,"u":20,"v":21,"w":22,"x":23,"y":24,"z":25}
 
-plaintext = "attacking tonight"
+# plaintext = "attacking tonight"
+plaintext = input("enter the plaintext: ")
 # convert to lowercase to prevent issues with indexing from the dictionary
 lower_plaintext = plaintext.lower() 
 
-key = "OCULORHINOLARINGOLOGY"
+# key = "OCULORHINOLARINGOLOGY"
+key = input("enter the key: ")
 # ensure that the key is at least the same length as the plaintext - it can be longer but not shorter
 while len(key) < len(plaintext):
     # the key is repeated until it matches the length
@@ -47,13 +49,12 @@ for char in lower_plaintext:
     # this will not only prevent errors but is also important for later when the plaintext is actually encoded
     else:
         plaintext_list.append(-1)
-        
+   
+# similarly, store the numeric value of each character in the key into the corresponding list (excluding whitespace)
 for char in lower_key:
-    # yeah not gonna lie i don't actually know how it works if there's a space in the key
     if char != " ":
         key_list.append(alphabet[char])
-    else:
-        key_list.append(-1)
+    # skip whitespace in the key
 
 # copy the plaintext list to simplify the process of adding the values in the two lists
 encoded_list = plaintext_list.copy()
@@ -98,4 +99,4 @@ for num in encoded_list:
     else:
         message += " "
         
-print(message)
+print("the encoded plaintext is: " + message)
